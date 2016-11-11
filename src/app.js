@@ -6,7 +6,7 @@ class App extends Component {
     render() {
         return (
             <View>
-                <Header />
+                <Header headerText='auth header' />
                 <Text>An App!</Text>
             </View>
         );
