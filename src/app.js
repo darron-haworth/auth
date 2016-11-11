@@ -6,6 +6,7 @@ class App extends Component {
     render() {
         return (
             <View>
+                <Header />
                 <Text>An App!</Text>
             </View>
         );
