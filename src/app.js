@@ -28,11 +28,19 @@ class App extends Component {
     renderContent() {
         switch (this.state.loggedIn) {
             case true:
-            return (<Button>Log Out!</Button>);
+            return (
+                <Button onPress={() => firebase.auth().signOut()} >Log Out!</Button>
+                );
             case false:
             return (<LoginForm />);
             default:
-                return (<View style={{ flex: 1, alignItems: 'center', alignSelf: 'center' }}><Spinner style={{alignItems: 'center', alignSelf: 'center'}} /></View>);
+                return (
+                    <View 
+                        style={{ flex: 1, alignItems: 'center', alignSelf: 'center' }}
+                    >
+                    <Spinner 
+                        style={{ alignItems: 'center', alignSelf: 'center' }}
+                    /></View>);
         }
     }
         
