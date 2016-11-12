@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import firebase from 'firebase';
-import { Header } from './components/common';
+import { Header, Button, Spinner } from './components/common';
 import LoginForm from './components/LoginForm';
 
 
 class App extends Component {
-    state = { loggedIn: false }
+    state = { loggedIn: null }
     componentWillMount() {
         firebase.initializeApp({
             apiKey: 'AIzaSyDYvfp4yCNxiyF-39mPrAC0fqdRkOTaLvU',
@@ -24,11 +24,24 @@ class App extends Component {
             }
         });
     }
+
+    renderContent() {
+        switch (this.state.loggedIn) {
+            case true:
+            return (<Button>Log Out!</Button>);
+            case false:
+            return (<LoginForm />);
+            default:
+                return (<View style={{ flex: 1, alignItems: 'center', alignSelf: 'center' }}><Spinner style={{alignItems: 'center', alignSelf: 'center'}} /></View>);
+        }
+    }
+        
+    
     render() {
         return (
             <View>
                 <Header headerText='Authentication' />
-                <LoginForm />
+                {this.renderContent()}
             </View>
         );
     }
