@@ -5,7 +5,6 @@ import { Header } from './components/common';
 import LoginForm from './components/LoginForm';
 
 
-
 class App extends Component {
     componentWillMount() {
         firebase.initializeApp({
@@ -14,6 +13,10 @@ class App extends Component {
             databaseURL: 'https://udemy-rn-auth.firebaseio.com',
             storageBucket: 'udemy-rn-auth.appspot.com',
             messagingSenderId: '454126433225'
+        });
+
+        firebase.auth().onAuthStateChanged((user) => {
+
         });
     }
     render() {
