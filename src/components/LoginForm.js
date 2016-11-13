@@ -33,19 +33,6 @@ class LoginForm extends Component {
         this.setState({ error: 'Authentication Failed', loading: false });
     }
 
-
-    changeInputText(field, text) {
-        if (text.slice(-1) === ' ') {
-            this.refs.pwInput.focus();
-        }
-
-        if (field === 'email') {
-            this.setState({ email: text.trim() });
-        } else {
-            this.setState({ password: text.trim() });
-        }
-    }
-
     renderButton() {
         if (this.state.loading) {
             return <Spinner />;
@@ -65,7 +52,7 @@ class LoginForm extends Component {
                     <Input
                         label="Email"
                         placeholder="user@gmail.com"
-                        onChangeText={text => this.changeInputText('email', text)}
+                        onChangeText={text => this.setState({ email: text.trim() })}
                         value={this.state.email}
                         onSubmitEditing={() => {
                             this.refs.pwInput.focus();
@@ -78,12 +65,16 @@ class LoginForm extends Component {
                         label="Password"
                         secureTextEntry
                         placeholder='password'
-                        onChangeText={text => this.changeInputText('password', text)}
+                        onChangeText={text => this.setState({ password: text.trim() })}
                         value={this.state.password}
                     />
                 </CardSection>
 
-                <Text style={[styles.errorTextStyle, { color: this.state.errorColor }]}>{this.state.error}</Text>
+                <Text 
+                    style={[styles.errorTextStyle, { color: this.state.errorColor }]}
+                >
+                    {this.state.error}
+                </Text>
 
                 <CardSection>
                     {this.renderButton()}
